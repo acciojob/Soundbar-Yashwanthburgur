@@ -1,26 +1,32 @@
-// Try different extensions if MP3 doesn't work
-function playSound(soundName) {
-    const extensions = ['.mp3', '.wav', '.ogg'];
-    let audioFound = false;
+// script.js - Try this first
+document.addEventListener('DOMContentLoaded', function() {
+    let currentAudio = null;
     
-    if (currentAudio) {
-        currentAudio.pause();
-        currentAudio.currentTime = 0;
-    }
+    const buttons = document.querySelectorAll('.btn');
     
-    // Try different file extensions
-    for (let ext of extensions) {
-        const audio = new Audio(`./sounds/${soundName}${ext}`);
-        audio.onerror = function() {
-            // Try next extension
-        };
-        audio.oncanplaythrough = function() {
-            if (!audioFound) {
-                audioFound = true;
-                currentAudio = audio;
-                currentAudio.play();
+    buttons.forEach(button => {
+        button.onclick = function() {
+            const soundName = this.textContent.trim();
+            
+            // Stop button
+            if (this.classList.contains('stop')) {
+                if (currentAudio) {
+                    currentAudio.pause();
+                    currentAudio.currentTime = 0;
+                }
+                return;
             }
+            
+            // Sound button
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            
+            // Just use sound name without folder path
+            currentAudio = new Audio(soundName + '.mp3');
+            currentAudio.play();
         };
-        audio.load();
-    }
+    });
+});
 }
