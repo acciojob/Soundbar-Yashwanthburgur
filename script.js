@@ -1,52 +1,26 @@
-document.addEventListener("DOMContentLoaded", () => {
+const sounds = ["applause", "boo", "gasp", "tada", "victory", "wrong"];
 
-    const soundNames = [
-        "applause",
-        "boo",
-        "gasp",
-        "tada",
-        "victory",
-        "wrong"
-    ];
+let currentAudio = null;
 
-    const buttonsDiv = document.getElementById("buttons");
+document.querySelectorAll("#buttons .btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+        const sound = btn.textContent.trim();
 
-    const sounds = {};
+        if (sound === "stop") {
+            if (currentAudio) {
+                currentAudio.pause();
+                currentAudio.currentTime = 0;
+            }
+            return;
+        }
 
-    // Create buttons + audio elements dynamically
-    soundNames.forEach(name => {
-        const btn = document.createElement("button");
-        btn.className = "btn";  
-        btn.innerText = name;
+        if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+        }
 
-        const audio = document.createElement("audio");
-        audio.src = `./sounds/${name}.mp3`;
-
-        sounds[name] = audio;
-
-        // play sound
-        btn.addEventListener("click", () => {
-            stopAll();
-            audio.currentTime = 0;
-            audio.play();
-        });
-
-        buttonsDiv.appendChild(btn);
+        currentAudio = new Audio(`./sounds/${sound}.mp3`);
+        currentAudio.play();
     });
-
-    // STOP button – must have class EXACTLY "stop"
-    const stopBtn = document.createElement("button");
-    stopBtn.className = "stop";
-    stopBtn.innerText = "stop";
-
-    stopBtn.addEventListener("click", stopAll);
-    buttonsDiv.appendChild(stopBtn);
-
-    // Pause all sounds
-    function stopAll() {
-        Object.values(sounds).forEach(a => {
-            a.pause();
-            a.currentTime = 0;
-        });
-    }
 });
+
