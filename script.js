@@ -4,6 +4,7 @@ let currentAudio = null;
 
 document.querySelectorAll("#buttons .btn").forEach(btn => {
     btn.addEventListener("click", () => {
+
         const sound = btn.textContent.trim();
 
         if (sound === "stop") {
