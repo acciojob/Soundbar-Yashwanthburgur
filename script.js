@@ -1,13 +1,14 @@
 const sounds = ["applause", "boo", "gasp", "tada", "victory", "wrong"];
-
 let currentAudio = null;
 
+// Add click listeners to all .btn buttons
 document.querySelectorAll("#buttons .btn").forEach(btn => {
+    
     btn.addEventListener("click", () => {
-
         const sound = btn.textContent.trim();
 
-        if (sound === "stop") {
+        // STOP BUTTON
+        if (btn.classList.contains("stop")) {
             if (currentAudio) {
                 currentAudio.pause();
                 currentAudio.currentTime = 0;
@@ -15,6 +16,7 @@ document.querySelectorAll("#buttons .btn").forEach(btn => {
             return;
         }
 
+        // PLAY SOUND BUTTON
         if (currentAudio) {
             currentAudio.pause();
             currentAudio.currentTime = 0;
@@ -24,4 +26,3 @@ document.querySelectorAll("#buttons .btn").forEach(btn => {
         currentAudio.play();
     });
 });
-
