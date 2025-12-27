@@ -1,10 +1,11 @@
-/*  your css code here. If applicable */
 body {
     background: #b276f1;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 #buttons {
@@ -14,10 +15,29 @@ body {
 
 .btn, .stop {
     padding: 20px 30px;
-    background: #4e1f85;
     border: none;
     color: white;
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
+
+.btn {
+    background: #4e1f85;
+}
+
+.stop {
+    background: #ff4757;
+}
+
+.btn:hover {
+    background: #6a3ea9;
+    transform: scale(1.05);
+}
+
+.stop:hover {
+    background: #ff3742;
+    transform: scale(1.05);
+}
+
