@@ -13,18 +13,14 @@ body {
     gap: 20px;
 }
 
-.btn, .stop {
+.btn {
     padding: 20px 30px;
     border: none;
+    background: #4e1f85;
     color: white;
     font-size: 18px;
     border-radius: 8px;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.btn {
-    background: #4e1f85;
 }
 
 .stop {
