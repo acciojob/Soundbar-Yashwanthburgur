@@ -1,4 +1,4 @@
-let currentAudio = null;
+let currentAudio = null;  // ← UNCOMMENT THIS
 
 document.querySelectorAll("#buttons .btn").forEach(function(btn) {
     btn.addEventListener("click", function() {
